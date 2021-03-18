@@ -8,6 +8,20 @@
       name="description"
       content="Die kleinste mandantenfähige Anwendung der HUK Coburg"
     />
+    <script>
+      (function () {
+        var script = document.createElement("script");
+        script.src = "https://unpkg.com/web-vitals";
+        script.onload = function () {
+          // When loading `web-vitals` using a classic script, all the public
+          // methods can be found on the `webVitals` global namespace.
+          webVitals.getCLS(console.log);
+          webVitals.getFID(console.log);
+          webVitals.getLCP(console.log);
+        };
+        document.head.appendChild(script);
+      })();
+    </script>
     <!-- alte Stylelib -->
     <link rel="stylesheet" type="text/css" href="/localstylelib/css/init.css" />
     <script src="/stylelib/3/js/loader.js"></script>
