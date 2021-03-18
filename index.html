@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Stylelib Demo-Anwendung</title>
+  <meta charset="utf-8" />
+  <meta name="description" content="Die kleinste mandantenfähige Anwendung der HUK Coburg" />
+  <!-- alte Stylelib -->
+  <link rel="stylesheet" type="text/css" href="/stylelib/3/css/init.css" />
+  <script src="/stylelib/3/js/loader.js"></script>
+
+  <!-- neue Stylelib -->
+  <!-- <link rel="stylesheet" href="/stylelib/4/lib/lib.css" />
+  <script src="/stylelib/4/loader.js"></script> -->
+</head>
+
+<body>
+  <huk-auth-header></huk-auth-header>
+
+  <main class="container sp-t--xl u-clearfix">
+    <huk-content-block label="HUK KOMPONENTEN">
+      <h2 class="component-title">
+        Nennen Sie einen Begriff mit mind. 3 Zeichen
+        <huk-helpbutton id="help"></huk-helpbutton>
+      </h2>
+      <huk-input id="input" label="Begriff eingeben"></huk-input>
+
+      <h2 class="component-title">
+        Würden Sie die HUK Coburg weiterempfehlen?
+      </h2>
+      <huk-radio-select id="radio"></huk-radio-select>
+    </huk-content-block>
+
+    <huk-button id="button" variant="cta" modifier="forward pull-right" label="Weiter" disabled></huk-button>
+  </main>
+
+  <main class="container sp-t--xl u-clearfix">
+    <huk-content-block label="HUI KOMPONENTEN">
+      <hui-badge type="primary">
+        Das ist eine hui-badge
+      </hui-badge>
+
+      <hui-divider clickable="true" id="huidivider">
+        Iam a hui-divider
+      </hui-divider>
+  </main>
+
+  <main class="container sp-t--xl u-clearfix">
+    <huk-content-block label="HUK24 KOMPONENTEN">
+      <huk24-divider clickable="true" id="hukdivider">
+        Iam a huk24-divider
+      </huk24-divider>
+  </main>
+
+  <huk-auth-footer></huk-auth-footer>
+
+  <script src="index.js"></script>
+</body>
+</html>
