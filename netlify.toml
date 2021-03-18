@@ -1,0 +1,10 @@
+[[redirects]]
+  from = "/stylelib/*"
+  to = "https://www.huk24.de/stylelib/:splat"
+  status = 200
+
+[[headers]]
+  # Define which paths this specific [[headers]] block will cover.
+  for = "/stylelib/*"
+    [headers.values]
+    Access-Control-Allow-Origin = "*"
