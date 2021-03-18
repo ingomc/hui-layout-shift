@@ -1,24 +1,44 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <title>Stylelib Demo-Anwendung</title>
+    <meta charset="utf-8" />
+    <meta name="robots" content="noindex,nofollow" />
+    <meta
+      name="description"
+      content="Die kleinste mandantenfähige Anwendung der HUK Coburg"
+    />
+    <!-- alte Stylelib -->
+    <link rel="stylesheet" type="text/css" href="/stylelib/3/css/init.css" />
+    <script src="/stylelib/3/js/loader.js"></script>
+  </head>
 
-<head>
-  <title>Stylelib Demo-Anwendung</title>
-  <meta charset="utf-8" />
-  <meta name="robots" content="noindex,nofollow" />
-  <meta name="description" content="Die kleinste mandantenfähige Anwendung der HUK Coburg" />
-  <!-- alte Stylelib -->
-  <link rel="stylesheet" type="text/css" href="/stylelib/3/css/init.css" />
-  <script src="/stylelib/3/js/loader.js"></script>
-</head>
-
-<body>
+  <body>
     <h1>Stylelib Testground</h1>
-  <ul>
-      <li><a href="./demo/">Minimale Demo-Anwendung</a></li>
-      <li><a href="./prod/">Produktive Stylelib in Verwendung</a></li>
-      <li><a href="./test/">Teststylelib Stylelib in Verwendung</a></li>
-  </ul>
 
-  <script src="index.js"></script>
-</body>
+    <huk-icon-cta
+      variant="huk24"
+      modifier=""
+      icon="schild--cursor"
+      text="Minimale Demo-Anwendung"
+      topline="Demo"
+      link="./demo/"
+    ></huk-icon-cta>
+    <huk-icon-cta
+      variant="huk24"
+      modifier=""
+      icon="schild--cursor"
+      text="Stylelib in Verwendung"
+      topline="PROD"
+      link="./prod/"
+    ></huk-icon-cta>
+    <huk-icon-cta
+      variant="huk24"
+      modifier=""
+      icon="schild--cursor"
+      text="Stylelib in Verwendung"
+      topline="TEST"
+      link="./test/"
+    ></huk-icon-cta>
+  </body>
 </html>
