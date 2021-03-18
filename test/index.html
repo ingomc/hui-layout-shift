@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Stylelib Demo-Anwendung</title>
+    <meta name="robots" content="noindex,nofollow" />
+    <meta charset="utf-8" />
+    <meta
+      name="description"
+      content="Die kleinste mandantenfähige Anwendung der HUK Coburg"
+    />
+    <!-- alte Stylelib -->
+    <link rel="stylesheet" type="text/css" href="/localstylelib/3/css/init.css" />
+    <script src="/localstylelib/3/js/loader.js"></script>
+  </head>
+
+  <body>
+    <huk-header-cms
+      can-sticky="true"
+      badge-label-is-new="Neu"
+      burger-menu-label="Menü"
+      navigation-json-url="/huk24service/header.model.json"
+    >
+      <huk-button
+        slot="damage-report"
+        modifier="header-damage-report small"
+        label="Schaden melden"
+        icon="radio--warning"
+        href="/schaden-melden"
+      ></huk-button>
+      <huk-search-block
+        slot="search-block"
+        api-search-url="/anonymizer/api/discovery"
+        input-placeholder="Frage eingeben ..."
+        button-label="Suchen"
+        button-cancel-label="Abbrechen"
+      ></huk-search-block>
+    </huk-header-cms>
+
+    <huk-homepage-hero-container
+      head-line="&lt;small>&lt;small> &lt;a href=&#34;/autoversicherung?page=hp_headlinelink_kfz&#34;>Kontaktlose Kfz-Versicherung&lt;/a> und weitere unschlagbare Angebote:&lt;/small>&lt;/small>"
+      headline-tag="h1"
+      layout="cols-1-1-1"
+      background-width="p60"
+      background-color="transparent"
+    >
+      <huk-homepage-hero-card
+        modifier="small-teaser"
+        badge-label="Privathaftpflicht"
+        badge-style="uc big orange"
+        teaser-image="/content/dam/huk24/web/produkte/hus/haftpflichtversicherung/aktionen/ph_hp_card_aktion_optimized.jpg"
+        head-line="Privathaftpflicht: Bis 21.03. abschließen und 15 € Gutschein sichern"
+        head-line-style="dark"
+        cta-label="Zum Angebot"
+        cta-href="/haftpflichtversicherung?page=hp_hero_ph"
+        cta-style="forward small"
+        promo-background-color="#263238"
+        promo-text-color="#fff"
+      >
+      </huk-homepage-hero-card>
+      <huk-homepage-hero-card
+        modifier="small-teaser"
+        badge-label="Hausratversicherung"
+        badge-style="uc big orange"
+        teaser-image="/content/dam/huk24/web/produkte/hus/hausratversicherung/aktionen/hr_hp_card_aktion_optimized.jpg"
+        head-line="Hausratversicherung: Bis 21.03. abschließen und 15 € Gutschein sichern"
+        head-line-style="dark"
+        cta-label="Zum Angebot"
+        cta-href="/hausratversicherung?page=hp_hero_hr"
+        cta-style="forward small"
+        promo-background-color="#263238"
+        promo-text-color="#fff"
+      >
+      </huk-homepage-hero-card>
+      <huk-homepage-hero-card
+        modifier="small-teaser"
+        badge-label="Risikoleben"
+        badge-style="uc big white"
+        teaser-image="/content/dam/huk24/web/produkte/leben/risikolebensversicherung/aktionen/rlv_hp_card_aktion_optimized.jpg"
+        head-line="Risikolebensversicherung: Bis 21.03. abschließen und 75€ Gutscheine sichern"
+        head-line-style="dark"
+        cta-label="Zum Angebot"
+        cta-href="/risikolebensversicherung?page=hp_hero_rlv"
+        cta-style="forward small"
+        promo-background-color="#263238"
+        promo-text-color="#fff"
+      >
+      </huk-homepage-hero-card>
+    </huk-homepage-hero-container>
+  </body>
+</html>
