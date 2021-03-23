@@ -2,16 +2,19 @@
   from = "/stylelib/*"
   to = "https://www.huk24.de/stylelib/:splat"
   status = 200
+  force = true
 
 [[redirects]]
   from = "/huk24service/*"
   to = "https://www.huk24.de/huk24service/:splat"
   status = 200
+  force = true
 
 [[redirects]]
   from = "/content/*"
   to = "https://www.huk24.de/content/:splat"
   status = 200
+  force = true
 
 [[headers]]
   # Define which paths this specific [[headers]] block will cover.
