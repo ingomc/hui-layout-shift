@@ -23,6 +23,12 @@
   force = true
 
 [[redirects]]
+  from = "/tarifrechner/thh/*"
+  to = "https://www.huk24.de/tarifrechner/thh/:splat"
+  status = 200
+  force = true
+
+[[redirects]]
   from = "/cookiebanner/*"
   to = "https://www.huk24.de/cookiebanner/:splat"
   status = 200
