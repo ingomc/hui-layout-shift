@@ -35,8 +35,14 @@
   force = true
 
 [[redirects]]
-  from = "/thh24//*"
-  to = "https://www.huk24.de/thh24//:splat"
+  from = "/thh24/*"
+  to = "https://www.huk24.de/thh24/:splat"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/auth-api/*"
+  to = "https://www.huk24.de/auth-api/:splat"
   status = 200
   force = true
 
