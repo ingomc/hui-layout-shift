@@ -29,6 +29,12 @@
   force = true
 
 [[redirects]]
+  from = "/huk24info_v2/*"
+  to = "https://www.huk24.de/huk24info_v2/:splat"
+  status = 200
+  force = true
+
+[[redirects]]
   from = "/cookiebanner/*"
   to = "https://www.huk24.de/cookiebanner/:splat"
   status = 200
