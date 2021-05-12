@@ -257,23 +257,67 @@
             </div>
           </div>
           <div class="content-group">
-            <h2 class="component-title">
-              Wie lautet die Anschrift?<huk-helpbutton></huk-helpbutton>
-            </h2>
-            <huk-overlay
-              is-visible="true"
-              small="true"
-              closeable="true"
-              headline="Hallo Bug"
-              ><div slot="overlay">
-                <div class="text--center">
-                  <p>
-                    Wir stellen hier einen Bug nach. Herzlich willkommen bei der
-                    Jagd. 🐝
-                  </p>
-                </div>
-              </div>
-            </huk-overlay>
+            <huk-content-block label="Content-Block Preview"
+              ><huk-list></huk-list>
+              <script>
+                mapConfigToComponent(
+                  "huk-list",
+                  {
+                    modifier: "icons",
+                    items: [
+                      {
+                        label: "This item is included",
+                        icon: "check",
+                        name: "item_1",
+                        helptext: {
+                          id: "A1",
+                          short: "This is a short helptext",
+                        },
+                      },
+                      {
+                        label: "This item is included",
+                        icon: "check",
+                        name: "item_2",
+                        helptext: { id: "A2", long: "This is long helptext" },
+                      },
+                      {
+                        label: "This item is not included",
+                        icon: "cross",
+                        name: "item_3",
+                        helptext: {
+                          id: "A3",
+                          short: "This is short helptext",
+                          long: "This is long helptext",
+                        },
+                      },
+                      {
+                        label: "<strong>HTML</strong> included",
+                        icon: "cross",
+                        name: "item_3",
+                        helptext: {
+                          id: "A3",
+                          short: "This is short helptext",
+                          long: "This is long helptext",
+                        },
+                      },
+                      {
+                        label:
+                          "<p>&lt;p&gt; included <strong>HTML</strong> included<br/>but only with modifier infobox</p>",
+                        icon: "cross",
+                        name: "item_3",
+                        helptext: {
+                          id: "A3",
+                          short: "This is short helptext",
+                          long: "This is long helptext",
+                        },
+                      },
+                    ],
+                    ordered: false,
+                  },
+                  ["helptextShortShown", "helptextLongShown"]
+                );
+              </script></huk-content-block
+            >
           </div>
           <div class="content-group">
             <h2 class="component-title">Wie lautet Ihre Telefonnumer?</h2>
