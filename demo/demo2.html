@@ -28,37 +28,36 @@
         }
       }).observe({ type: "layout-shift", buffered: true });
 
-
-
-  
-    function mapConfigToComponent(components, props, events) {
-      if (typeof components !== "object") {
-        components = document.querySelectorAll(components);
-      } else if (!Array.isArray(components)) {
-        components = [components];
-      }
-
-      for (var i = 0; i < components.length; i++) {
-        var component = components[i];
-        for (var propName in props) {
-          if (props.hasOwnProperty(propName) && props[propName]) {
-            component[propName] = props[propName];
-          }
+      function mapConfigToComponent(components, props, events) {
+        if (typeof components !== "object") {
+          components = document.querySelectorAll(components);
+        } else if (!Array.isArray(components)) {
+          components = [components];
         }
 
-        if (events) {
-          for (var n = 0; n < events.length; n++) {
-            (function () {
-              var eventName = events[n];
-              component.addEventListener(eventName, function (event) {
-                console.log('[EVENT] ' + eventName, (event && event.detail !== undefined) ? event.detail : '')
-              });
-            }());
+        for (var i = 0; i < components.length; i++) {
+          var component = components[i];
+          for (var propName in props) {
+            if (props.hasOwnProperty(propName) && props[propName]) {
+              component[propName] = props[propName];
+            }
+          }
+
+          if (events) {
+            for (var n = 0; n < events.length; n++) {
+              (function () {
+                var eventName = events[n];
+                component.addEventListener(eventName, function (event) {
+                  console.log(
+                    "[EVENT] " + eventName,
+                    event && event.detail !== undefined ? event.detail : ""
+                  );
+                });
+              })();
+            }
           }
         }
       }
-    }
-
     </script>
   </head>
 
@@ -261,7 +260,20 @@
             <h2 class="component-title">
               Wie lautet die Anschrift?<huk-helpbutton></huk-helpbutton>
             </h2>
-            <huk-overlay is-visible="true" small="true" closeable="true" headline="Headline"><div slot="overlay"><div class="text--center"><p>Wir haben lange keine Änderung festgestellt.<br>Ihre letzten Eingaben sind leider verloren.<br>Gerne würden wir Sie von unserem Angebot überzeugen!</p><div><huk-button variant="cta" label="Erneut berechnen"></huk-button></div><div><huk-button variant="cta" modifier="link" label="Zurück zur Startseite"></huk-button></div></div></div></huk-overlay>
+            <huk-overlay
+              is-visible="true"
+              small="true"
+              closeable="true"
+              headline="Hallo Bug"
+              ><div slot="overlay">
+                <div class="text--center">
+                  <p>
+                    Wir stellen hier einen Bug nach. Herzlich willkommen bei der
+                    Jagd. 🐝
+                  </p>
+                </div>
+              </div>
+            </huk-overlay>
           </div>
           <div class="content-group">
             <h2 class="component-title">Wie lautet Ihre Telefonnumer?</h2>
