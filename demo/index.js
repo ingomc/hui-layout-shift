@@ -24,8 +24,7 @@ radio.options = [
 help.helptext = {
   id: "1337",
   short: "Es gibt viele Worte mehr als 3 Zeichen.",
-  long:
-    "<h1>Begriffe mit mindestens drei Zeichen sind zum Beispiel:</h1><ul><li>Wolf</li><li>Lamm</li><li>Hurz</li></ul><p>Für Risiken und Nebenwirkungen fragen Sie Ihren Arzt oder Apotheker.</p>",
+  long: "<h1>Begriffe mit mindestens drei Zeichen sind zum Beispiel:</h1><ul><li>Wolf</li><li>Lamm</li><li>Hurz</li></ul><p>Für Risiken und Nebenwirkungen fragen Sie Ihren Arzt oder Apotheker.</p>",
 };
 
 // input validation logic
@@ -84,15 +83,36 @@ button.addEventListener("clicked", () => {
   atomicLegDrop();
 });
 
+// huidivider.addEventListener("huiClick", () => {
+//   console.log("huidivider clicked!!!");
+// });
+// console.log(huidivider);
 
-huidivider.addEventListener('huiClick', () => {
-  console.log('huidivider clicked!!!');
-});
-console.log(huidivider);
-
-hukdivider.addEventListener('clicked', () => {
-  console.log('hukdivider clicked!!!');
-});
+// hukdivider.addEventListener("clicked", () => {
+//   console.log("hukdivider clicked!!!");
+// });
 
 hukselect.withFilter = true;
-hukselect.options = [{"label":"Alfa-Romeo","value":1},{"label":"Audi","value":2},{"label":"BMW","value":3},{"label":"Cadillac","value":4},{"label":"Chevrolet","value":5},{"label":"Citroen","value":6},{"label":"Fiat","value":7},{"label":"Ford","value":8},{"label":"Honda","value":9},{"label":"Hyundai","value":10},{"label":"Jaguar","value":11},{"label":"Kia","value":12},{"label":"Lancia","value":13},{"label":"Land Rover","value":14},{"label":"Lexus","value":15},{"label":"Mazda","value":16},{"label":"Mercedes-Benz","value":17},{"label":"Mini","value":18},{"label":"Mitsubishi","value":19},{"label":"Nissan","value":20},{"label":"Opel","value":21}];
+hukselect.options = [
+  { label: "Alfa-Romeo", value: 1 },
+  { label: "Audi", value: 2 },
+  { label: "BMW", value: 3 },
+  { label: "Cadillac", value: 4 },
+  { label: "Chevrolet", value: 5 },
+  { label: "Citroen", value: 6 },
+  { label: "Fiat", value: 7 },
+  { label: "Ford", value: 8 },
+  { label: "Honda", value: 9 },
+  { label: "Hyundai", value: 10 },
+  { label: "Jaguar", value: 11 },
+  { label: "Kia", value: 12 },
+  { label: "Lancia", value: 13 },
+  { label: "Land Rover", value: 14 },
+  { label: "Lexus", value: 15 },
+  { label: "Mazda", value: 16 },
+  { label: "Mercedes-Benz", value: 17 },
+  { label: "Mini", value: 18 },
+  { label: "Mitsubishi", value: 19 },
+  { label: "Nissan", value: 20 },
+  { label: "Opel", value: 21 },
+];
