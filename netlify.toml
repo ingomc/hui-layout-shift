@@ -16,6 +16,13 @@
   status = 200
   force = true
 
+[[redirects]]
+  from = "/rechner/*"
+  to = "https://www.huk24.de/tarifrechner/thh/:splat"
+  status = 200
+  force = true
+
+
 [[headers]]
   # Define which paths this specific [[headers]] block will cover.
   for = "/stylelib/*"
