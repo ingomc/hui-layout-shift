@@ -22,6 +22,12 @@
   status = 200
   force = true
 
+[[redirects]]
+  from = "/cookiebanner/*"
+  to = "https://www.huk24.de/cookiebanner/:splat"
+  status = 200
+  force = true
+
 
 [[headers]]
   # Define which paths this specific [[headers]] block will cover.
