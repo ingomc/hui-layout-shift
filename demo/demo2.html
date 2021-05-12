@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Stylelib Demo-Anwendung</title>
+    <meta charset="utf-8" />
+    <meta name="robots" content="noindex,nofollow" />
+    <meta
+      name="description"
+      content="Die kleinste mandantenfähige Anwendung der HUK Coburg"
+    />
+    <!-- alte Stylelib -->
+    <link rel="stylesheet" type="text/css" href="/stylelib/3/css/init.css" />
+    <script src="/stylelib/3/js/loader.js"></script>
+
+    <!-- neue Stylelib -->
+    <!-- <link rel="stylesheet" href="/stylelib/4/lib/lib.css" />
+  <script src="/stylelib/4/loader.js"></script> -->
+
+    <script>
+      let cls = 0;
+
+      new PerformanceObserver((entryList) => {
+        for (const entry of entryList.getEntries()) {
+          if (!entry.hadRecentInput) {
+            cls += entry.value;
+            console.log("Current CLS value:", cls, entry);
+          }
+        }
+      }).observe({ type: "layout-shift", buffered: true });
+
+
+
+  
+    function mapConfigToComponent(components, props, events) {
+      if (typeof components !== "object") {
+        components = document.querySelectorAll(components);
+      } else if (!Array.isArray(components)) {
+        components = [components];
+      }
+
+      for (var i = 0; i < components.length; i++) {
+        var component = components[i];
+        for (var propName in props) {
+          if (props.hasOwnProperty(propName) && props[propName]) {
+            component[propName] = props[propName];
+          }
+        }
+
+        if (events) {
+          for (var n = 0; n < events.length; n++) {
+            (function () {
+              var eventName = events[n];
+              component.addEventListener(eventName, function (event) {
+                console.log('[EVENT] ' + eventName, (event && event.detail !== undefined) ? event.detail : '')
+              });
+            }());
+          }
+        }
+      }
+    }
+
+    </script>
+  </head>
+
+  <body>
+    <huk-vm-bar
+      text="Berater Homepage von "
+      name="Davila Alexander King-Hoffschneider"
+      helplabel="Was bedeutet das?"
+    ></huk-vm-bar>
+    <script>
+      mapConfigToComponent("huk-vm-bar");
+    </script>
+    <huk-tr-header
+      ><div slot="navigationflyout">
+        <div wrap-for-ng-if>
+          <h5>Wir sind für sie da:</h5>
+          <p class="text text-default">Telefon: 0800 2153153 *</p>
+          <div>
+            <huk-button modifier="lead" label="Rückrufservice"></huk-button
+            ><huk-button
+              modifier="lead"
+              label="Nachricht schreiben"
+            ></huk-button>
+          </div>
+          <p>
+            * Kostenlos aus deutschen Telefonnetzen, Mo bis Fr von 08:00 –
+            20:00 Uhr
+          </p>
+        </div>
+      </div></huk-tr-header
+    >
+    <script>
+      mapConfigToComponent("huk-tr-header", {
+        logohref: "/",
+        label: "Wohnung/Haus",
+        sublabel: "Noch ein Schritt bis zum Angebot",
+        tabs: [
+          { label: "Wohnung/Haus", clickable: true, active: true },
+          { label: "Angebot", clickable: true },
+          { label: "Antragsdaten" },
+          { label: "Ihre Daten" },
+          { label: "Zusammenfassung" },
+        ],
+        price: 129.61,
+        bill: {
+          label: "Autoversicherung",
+          sublabel: [
+            "Vollkasko und Haftpflicht",
+            "inkl. Telematik",
+            "Rechtschutzversicherung",
+          ],
+          bulletLists: [
+            {
+              label: "Selbstbeteiligung",
+              items: [
+                { label: "300 € Vollkasko / 150 € Teilkasko" },
+                { label: "150 € Rechtsschutz" },
+              ],
+            },
+          ],
+          itemBlocks: [
+            {
+              items: [
+                { label: "Zahlungsweise", value: "jährlich", bold: true },
+              ],
+            },
+            {
+              items: [
+                { label: "Classic Select", value: 231.13, format: "hukeuro" },
+                { label: "Schutzbrief", value: 9, format: "hukeuro" },
+                { label: "Fahrerschutz", value: 16, format: "hukeuro" },
+              ],
+            },
+            {
+              items: [
+                {
+                  label: "Verkehrsrechtschutz",
+                  value: 43.75,
+                  format: "hukeuro",
+                },
+              ],
+            },
+            {
+              items: [
+                {
+                  label: "Verkehrsrechtschutz",
+                  value: 43.75,
+                  format: "hukeuro",
+                },
+              ],
+            },
+            {
+              items: [
+                {
+                  label: "Verkehrsrechtschutz",
+                  value: 43.75,
+                  format: "hukeuro",
+                },
+              ],
+            },
+            {
+              items: [
+                {
+                  label: "Verkehrsrechtschutz",
+                  value: 43.75,
+                  format: "hukeuro",
+                },
+              ],
+            },
+            {
+              items: [
+                {
+                  label: "Gesamtbeitrag im Jahr",
+                  value: 43.75,
+                  format: "hukeuro",
+                  bold: true,
+                  big: true,
+                },
+              ],
+            },
+          ],
+        },
+        period: "im Jahr",
+      });
+
+      // Example Implementation for the APP
+      var header = document.querySelector("huk-tr-header");
+      // Kontakt button get onlick handler
+      var iconShortcut = document.querySelector("huk-icon-shortcut[keepfocus]");
+      if (iconShortcut) {
+        iconShortcut.addEventListener("click", function () {
+          header.navigationflyoutopen = !header.navigationflyoutopen;
+          if (!header.navigationflyoutopen) {
+            iconShortcut.unfocus();
+          } else {
+            iconShortcut.isfocussed = true;
+          }
+        });
+      }
+
+      header.addEventListener("navigationflyoutClosed", function () {
+        iconShortcut.unfocus();
+      });
+
+      header.addEventListener("billToggled", function (e) {
+        console.log("bill: " + e.detail);
+      });
+      /* end */
+    </script>
+    <main class="site-content">
+      <div class="container container--narrow">
+        <huk-content-block label="Hausratversicherung"
+          >Unsere Hausratversicherung gilt für Häuser und Wohnungen, die ständig
+          bewohnt sind und bei denen es sich um Massiv- oder Fertighäuser mit
+          hartem Dach handelt.</huk-content-block
+        ><huk-content-block label="Anschrift"
+          ><div class="content-group">
+            <h2 class="component-title">Wie lautet Ihre Anschrift?</h2>
+            <div class="row">
+              <div class="col-6">
+                <huk-select></huk-select>
+                <script>
+                  mapConfigToComponent("huk-select", {
+                    name: "Anrede",
+                    modifier: "form",
+                    options: [
+                      { label: "Herr", value: "Herr" },
+                      { label: "Frau", value: "Frau" },
+                    ],
+                    placeholder: "Anrede Placeholder",
+                  });
+                </script>
+              </div>
+              <div class="col-6">
+                <huk-input name="Titel" label="Titel"></huk-input>
+              </div>
+            </div>
+          </div>
+          <div class="content-group">
+            <h2 class="component-title">
+              Wie lautet die Anschrift?<huk-helpbutton></huk-helpbutton>
+            </h2>
+            <div class="row">
+              <div class="col-4">
+                <huk-input
+                  name="postalCode"
+                  pattern="[0-9]{5}"
+                  maxlength="5"
+                  label="PLZ"
+                ></huk-input>
+              </div>
+              <div class="col-8"><huk-input label="Wohnort"></huk-input></div>
+            </div>
+            <div class="row">
+              <div class="col-8"><huk-input label="Straße"></huk-input></div>
+              <div class="col-4"><huk-input label="Nr"></huk-input></div>
+            </div>
+          </div>
+          <div class="content-group">
+            <h2 class="component-title">Wie lautet Ihre Telefonnumer?</h2>
+            <huk-input
+              name="Telefonnummer"
+              label="Telefonnummer"
+              type="number"
+            ></huk-input></div></huk-content-block
+        ><huk-content-block label="Mein Auto"
+          ><huk-icon-select></huk-icon-select>
+          <script>
+            mapConfigToComponent(
+              "huk-icon-select",
+              {
+                name: "fahrzeugsuche",
+                "aria-label": "Aria Label",
+                options: [
+                  {
+                    label: "HSN/TSN eingeben",
+                    icon: "fahrzeugschein",
+                    value: "hsntsn",
+                  },
+                  {
+                    label: "Aus Liste wählen",
+                    icon: "vergroesserungsglas",
+                    value: "list",
+                  },
+                ],
+                value: "hsntsn",
+              },
+              ["valueChanged"]
+            );
+          </script></huk-content-block
+        ><huk-content-block label="Vorversicherung"
+          ><div class="content-group">
+            <!-- component title is a global indicator for components, used html-element can be changed to label, etc. --><huk-radio-select
+            ></huk-radio-select>
+            <script>
+              mapConfigToComponent(
+                "huk-radio-select",
+                {
+                  "aria-label": "Aria Label",
+                  options: [
+                    { label: "Ja", value: "ja" },
+                    { label: "Nein", value: "nein" },
+                    { label: "Vielleicht", value: "vielleicht" },
+                  ],
+                  value: "nein",
+                },
+                ["valueChanged"]
+              );
+            </script>
+            <!-- component title is a global indicator for components, used html-element can be changed to label, etc. --><huk-multi-select
+              id="huk-multi-select"
+              ><div slot="kampfsport">
+                <huk-block-list-item
+                  modifier="info"
+                  message="Arnis, mit Wettkämpfen"
+                  primary-action-label="Löschen"
+                  secondary-action-label="Bearbeiten"
+                ></huk-block-list-item
+                ><huk-button
+                  variant="primary"
+                  label="Kampfsportart hinzufügen"
+                  modifier="block centered ta-left"
+                ></huk-button></div
+            ></huk-multi-select>
+            <script>
+              mapConfigToComponent(
+                "huk-multi-select",
+                {
+                  label: "Haben Sie eine bestehende Versicherung für Ihr Haus?",
+                  id: "vorversicherung",
+                  options: [
+                    { label: "Ja", value: "ja" },
+                    { label: "Nein", value: "nein" },
+                    { label: "Vielleicht", value: "vielleicht" },
+                    { label: "Disabled", value: "disabled", disabled: true },
+                  ],
+                  value: { ja: true, vielleicht: true },
+                },
+                ["valueChanged"]
+              );
+            </script>
+            <!-- component title is a global indicator for components, used html-element can be changed to label, etc. --><huk-checkbox
+              modifier="multiselect"
+              label="Please click me"
+            ></huk-checkbox>
+            <div class="content-group__helper">
+              <p class="text text--help">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore
+                ratione dolorem, possimus atque architecto tenetur a suscipit
+                vero. Culpa officiis exercitationem enim ratione.
+              </p>
+            </div>
+          </div></huk-content-block
+        ><huk-content-block label="Unser Angebot"
+          ><huk-product-selection></huk-product-selection>
+          <script>
+            mapConfigToComponent(
+              "huk-product-selection",
+              {
+                value: 2,
+                payment: "im Jahr",
+                caption: {
+                  items: [
+                    {
+                      label:
+                        "100 Mio. € Versicherungssumme in der KFZ-Haftpflicht",
+                      name: "item_1",
+                      helptext: {
+                        id: "A1",
+                        short:
+                          "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor inviduntpor invidunt ut labore.",
+                        long: "<h2>Lorem ipsum dolor sit amet</h2><p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna.</p><p>aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>",
+                      },
+                    },
+                    {
+                      label:
+                        "Mallorca-Police (Schutz für Mietwägen im Ausland)",
+                      name: "item_2",
+                      helptext: {
+                        id: "A2",
+                        short:
+                          "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor inviduntpor invidunt ut labore.",
+                        long: "<h2>Lorem ipsum dolor sit amet</h2><p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna.</p><p>aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>",
+                      },
+                    },
+                    {
+                      label: "Neupreisentschädigung",
+                      name: "item_3",
+                      helptext: {
+                        id: "A3",
+                        short:
+                          "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor inviduntpor invidunt ut labore.",
+                        long: "<h2>Lorem ipsum dolor sit amet</h2><p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna.</p><p>aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>",
+                      },
+                    },
+                    {
+                      label:
+                        "Werkstattauswahl Werkstattauswahl Werkstattauswahl Werkstattauswahl Werkstattauswahl Werkstattauswahl Werkstattauswahl Werkstattauswahl Werkstattauswahl Werkstattauswahl Werkstattauswahl Werkstattauswahl",
+                      name: "item_4",
+                      helptext: {
+                        id: "A4",
+                        short:
+                          "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor inviduntpor invidunt ut labore.",
+                        long: "<h2>Lorem ipsum dolor sit amet</h2><p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna.</p><p>aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>",
+                      },
+                    },
+                  ],
+                  additionalItems: [
+                    {
+                      label: "Additional 1",
+                      name: "item_5",
+                      helptext: {
+                        id: "A5",
+                        short:
+                          "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor inviduntpor invidunt ut labore.",
+                        long: "<h2>Lorem ipsum dolor sit amet</h2><p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna.</p><p>aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>",
+                      },
+                    },
+                    { label: "Additional 2", name: "item_6" },
+                  ],
+                },
+                products: [
+                  {
+                    label: "Basis",
+                    price: 220.14,
+                    value: 1,
+                    recommended: false,
+                    items: [
+                      { icon: "check", label: "Ein Label mit Icon" },
+                      { icon: "cross" },
+                      { label: "6 Monate" },
+                      { label: "Durch HUK-COBURG. Sie sparen 20%" },
+                    ],
+                    additionalItems: [
+                      { icon: "check" },
+                      {
+                        label:
+                          "This item is included This item is included This item is included This item is included This item is included This item is included This item is included This item is included This item is included This item is included",
+                      },
+                    ],
+                  },
+                  {
+                    label: "Classic",
+                    price: 231.13,
+                    value: 2,
+                    recommended: true,
+                    recommendationHelptext: {
+                      id: "R1",
+                      short:
+                        "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor inviduntpor invidunt ut labore.",
+                      long: "<h2>Lorem ipsum dolor sit amet</h2><p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna.</p><p>aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>",
+                    },
+                    items: [
+                      { icon: "check", label: "Ein Label mit Icon" },
+                      { icon: "check" },
+                      { label: "18 Monate" },
+                      { label: "Durch HUK-COBURG. Sie sparen 20%" },
+                    ],
+                    additionalItems: [
+                      { icon: "check" },
+                      { label: "This item is included" },
+                    ],
+                  },
+                  {
+                    label: "Classic Plus",
+                    price: 266.93,
+                    value: 3,
+                    recommended: false,
+                    items: [
+                      { icon: "check", label: "Ein Label mit Icon" },
+                      { icon: "cross" },
+                      { label: "18 Monate" },
+                      { icon: "check" },
+                    ],
+                    additionalItems: [
+                      { icon: "check" },
+                      { label: "This item is included" },
+                    ],
+                  },
+                ],
+              },
+              [
+                "valueChanged",
+                "helptextShortShown",
+                "helptextLongShown",
+                "clicked",
+              ]
+            );
+          </script></huk-content-block
+        ><huk-content-block label="Selbstbeteiligung"
+          ><huk-helptext-container
+            ><huk-select></huk-select>
+            <script>
+              mapConfigToComponent(
+                "huk-select",
+                {
+                  modifier: "default",
+                  validity: "not-validated",
+                  options: [
+                    { label: "bis zu 560 €", value: 1 },
+                    { label: "bis zu 1080 €", value: 2 },
+                    { label: "bis zu 2160 €", value: 3 },
+                  ],
+                },
+                ["valueChanged", "focussed", "blurred", "inputted"]
+              );
+            </script></huk-helptext-container
+          >
+          <script>
+            mapConfigToComponent(
+              "huk-helptext-container",
+              {
+                helptext: {
+                  id: "A123",
+                  short:
+                    "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor inviduntpor invidunt ut labore.",
+                },
+              },
+              [
+                "helpbuttonClicked",
+                "detailsLinkClicked",
+                "helptextShortShown",
+                "helptextLongShown",
+              ]
+            );
+          </script></huk-content-block
+        ><huk-content-block label="Automarken Auswahl" id="selectiosbug"
+          ><huk-select></huk-select>
+          <script>
+            mapConfigToComponent(
+              "huk-select",
+              {
+                modifier: "default",
+                validity: "not-validated",
+                options: [
+                  { label: "Alfa-Romeo", value: 1 },
+                  { label: "Audi", value: 2 },
+                  { label: "BMW", value: 3 },
+                  { label: "Cadillac", value: 4 },
+                  { label: "Chevrolet", value: 5 },
+                  { label: "Citroen", value: 6 },
+                  { label: "Fiat", value: 7 },
+                  { label: "Ford", value: 8 },
+                  { label: "Honda", value: 9 },
+                  { label: "Hyundai", value: 10 },
+                  { label: "Jaguar", value: 11 },
+                  { label: "Kia", value: 12 },
+                  { label: "Lancia", value: 13 },
+                  { label: "Land Rover", value: 14 },
+                  { label: "Lexus", value: 15 },
+                  { label: "Mazda", value: 16 },
+                  { label: "Mercedes-Benz", value: 17 },
+                  { label: "Mini", value: 18 },
+                  { label: "Mitsubishi", value: 19 },
+                  { label: "Nissan", value: 20 },
+                  { label: "Opel", value: 21 },
+                ],
+                withFilter: true,
+              },
+              ["valueChanged", "focussed", "blurred", "inputted"]
+            );
+          </script></huk-content-block
+        ><huk-content-block label="Weitere Optionen"
+          ><huk-product-supplement id="default"
+            ><huk-select modifier="small" has-sublabel="true"></huk-select
+          ></huk-product-supplement>
+          <script>
+            mapConfigToComponent(
+              "huk-product-supplement#default",
+              {
+                label: "Fahrrad-Diebstahl",
+                price: 14.21,
+                tag: "Nur im Classic Tarif",
+                description:
+                  "Sichern Sie sich gegen die finanziellen Folgen eines Fahrraddiebstahls ab.",
+                disabled: null,
+                recommendationHelptext: {
+                  id: "B123",
+                  short:
+                    "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor inviduntpor invidunt ut labore.",
+                  long: "<h2>Lorem ipsum dolor sit amet</h2><p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna.</p><p>aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>",
+                },
+              },
+              ["valueChanged", "helptextShortShown", "helptextLongShown"]
+            );
+
+            var select = document.querySelector("huk-select");
+            select.options = [
+              {
+                label: "bis zu 560 €",
+                sublabel: "der Versicherungssumme",
+                sublabelPrefix: "1%",
+                value: 1,
+              },
+              {
+                label: "bis zu 1080 €",
+                sublabel: "der Versicherungssumme",
+                sublabelPrefix: "5%",
+                value: 2,
+              },
+              {
+                label: "bis zu 2160 €",
+                sublabel: "der Versicherungssumme",
+                sublabelPrefix: "10%",
+                value: 3,
+              },
+            ];
+          </script></huk-content-block
+        ><huk-typo-teaser
+          saving="5&thinsp;%"
+          intervall="Vierteljährlich"
+          subtitle="auf ihren Beitrag"
+          subline="Sie sparen mit dem Kombi-Bonus"
+          ><div slot="textcontent">
+            <h2>
+              <span style="color: #4e7380">Glückwunsch!</span> Sie sparen mit
+              dem Kombi-Bonus!
+            </h2>
+            <p>
+              Da Sie bereits zwei Kombifähige Versicherung abgeschlossen haben
+              reduziert sich der Beitrag in Ihrer Pkw-Haftpflicht-versicherung
+              und Kaskoversicherung um 5%
+            </p>
+            <a class="link link--spaced link--bold" href="#"
+              ><huk-icon icon="arrow" size="xs" inline="true"></huk-icon
+              >&nbsp;Mehr informationen</a
+            >
+          </div></huk-typo-teaser
+        ><huk-content-block label="Vorversicherung"
+          ><div class="content-group">
+            <!-- component title is a global indicator for components, used html-element can be changed to label, etc. --><huk-radio-select
+            ></huk-radio-select>
+            <script>
+              mapConfigToComponent(
+                "huk-radio-select",
+                {
+                  "aria-label": "Aria Label",
+                  options: [
+                    { label: "Ja", value: "ja" },
+                    { label: "Nein", value: "nein" },
+                    { label: "Vielleicht", value: "vielleicht" },
+                  ],
+                  value: "nein",
+                },
+                ["valueChanged"]
+              );
+            </script>
+          </div></huk-content-block
+        ><huk-content-block modifier="seamless"
+          ><huk-accordion-item
+            ><huk-list></huk-list>
+            <script>
+              mapConfigToComponent(
+                "huk-list",
+                {
+                  modifier: "icons",
+                  items: [
+                    { label: "This item is included", icon: "check" },
+                    { label: "This item is included", icon: "check" },
+                    { label: "This item is not included", icon: "cross" },
+                  ],
+                },
+                ["helptextShortShown", "helptextLongShown"]
+              );
+            </script></huk-accordion-item
+          >
+          <script>
+            mapConfigToComponent(
+              "huk-accordion-item",
+              {
+                modifier: "tarifrechner",
+                labelOpen: "Dokumente anzeigen",
+                labelClosed: "Dokumente verbergen",
+              },
+              ["openEvent", "closeEvent"]
+            );
+          </script></huk-content-block
+        >
+        <section class="content-group">
+          <huk-button
+            modifier="primary backward inverted"
+            label="Zurück"
+          ></huk-button
+          ><huk-button
+            modifier="primary forward disabled pull-right"
+            label="Weiter"
+          ></huk-button>
+        </section>
+      </div>
+    </main>
+    <huk-footer
+      only-copyright="true"
+      claim="HUK24.de ist durch den TÜV Rheinland geprüft und zertifiziert"
+      text="HUK24 AG – Ein Unternehmen der HUK-COBURG Versicherungsgruppe"
+      ><script huk-json-parse="navigation" type="application/json">
+        {
+          "contentlinks": [
+            {
+              "label": "Unsere Versicherungen",
+              "links": [
+                { "label": "Autoversicherung", "href": "https://#" },
+                { "label": "Motorradversicherung", "href": "https://#" },
+                { "label": "Wohnmobilversicherung", "href": "https://#" },
+                { "label": "Telematik-Tarif", "href": "https://#" },
+                { "label": "Privathaftplicht", "href": "https://#" },
+                { "label": "Tierhalterhaftplicht", "href": "https://#" },
+                { "label": "Hausratversicherung", "href": "https://#" },
+                { "label": "Wohngebäudeversicherung", "href": "https://#" },
+                { "label": "Unfallversicherung", "href": "https://#" },
+                { "label": "Verkehrsrechtsschutz", "href": "https://#" },
+                { "label": "Rechtsschutz komplett", "href": "https://#" },
+                {
+                  "label": "Berufsunfähigkeitsversicherung",
+                  "href": "https://#"
+                },
+                { "label": "Risikolebensversicherung", "href": "https://#" },
+                { "label": "Riester Rente", "href": "https://#" },
+                { "label": "Rürup Rente", "href": "https://#" },
+                { "label": "Private Krankenversicherung", "href": "https://#" },
+                { "label": "Reisekrankenversicherung", "href": "https://#" },
+                { "label": "Zahnzusatzversicherung", "href": "https://#" },
+                { "label": "Reisekrankenversicherung", "href": "https://#" },
+                { "label": "Zahnzusatzversicherung", "href": "https://#" },
+                { "label": "Private Krankenversicherung", "href": "https://#" },
+                { "label": "Reisekrankenversicherung", "href": "https://#" },
+                { "label": "Zahnzusatzversicherung", "href": "https://#" },
+                { "label": "Reisekrankenversicherung", "href": "https://#" },
+                { "label": "Zahnzusatzversicherung", "href": "https://#" }
+              ]
+            },
+            {
+              "label": "Weitere Informationen",
+              "links": [
+                { "label": "Startseite", "href": "https://#" },
+                { "label": "Über uns", "href": "https://#" },
+                { "label": "Kontakt", "href": "https://#" },
+                { "label": "Impressum", "href": "https://#" },
+                { "label": "Datenschutz", "href": "https://#" },
+                { "label": "Nutzungsbedingungen", "href": "https://#" }
+              ]
+            }
+          ],
+          "legal": {
+            "links": [
+              { "label": "Impressum", "href": "/impressum" },
+              { "label": "Datenschutz", "href": "/datenschutz" },
+              { "label": "Sitemap", "href": "/sitemap" }
+            ]
+          },
+          "social": {
+            "links": [
+              {
+                "label": "HUK24 Facebook Auftritt",
+                "href": "/http://www.facebook.com/huk24/?nmclick=ext_Link_FB_H24",
+                "icon": "facebook"
+              },
+              {
+                "label": "HUK24 YouTube Auftritt",
+                "href": "/http://www.youtube.com/user/HUK24/?nmclick=ext_Link_FB_YT24",
+                "icon": "youtube"
+              },
+              {
+                "label": "HUK Blog",
+                "href": "/http://www.huk-blog.de/?nmclick=ext_Link_HUK_Blog",
+                "icon": "rss"
+              }
+            ]
+          }
+        }
+      </script></huk-footer
+    >
+    <div
+      style="
+        z-index: 100000;
+        position: fixed;
+        left: 16px;
+        bottom: 16px;
+        text-align: center;
+      "
+    >
+      <span style="font-size: 0.6rem">Sticky-Header?</span><br /><huk-switch
+        id="sticky-switch"
+        variant="cta"
+      ></huk-switch>
+    </div>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        var stickySwitchEl = document.querySelector("#sticky-switch");
+        var stickyHeaderEl = document.querySelector("huk-tr-header");
+        stickySwitchEl.addEventListener("valueChanged", function (e) {
+          if (e.detail) {
+            stickyHeaderEl.modifier = "is-sticky";
+          } else {
+            stickyHeaderEl.modifier = "";
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
