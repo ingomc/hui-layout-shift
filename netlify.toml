@@ -1,36 +1,36 @@
 [[redirects]]
   from = "/shield/*"
-  to = "https://hukde-de.web.dmz.tuhuk.de/shield/:splat"
+  to = "https://www.huk24.de/shield/:splat"
   status = 200
   force = true
 
 [[redirects]]
   from = "/shield-develop/*"
-  to = "https://hukde-de.web.dmz.tuhuk.de/shield-develop/:splat"
+  to = "https://www.huk24.de/shield-develop/:splat"
   status = 200
   force = true
 
 [[redirects]]
   from = "/smartcomponents-develop/*"
-  to = "https://huk24-de.web.dmz.tuhuk.de/smartcomponents-develop/:splat"
+  to = "https://www.huk24.de/smartcomponents-develop/:splat"
   status = 200
   force = true
 
 [[redirects]]
   from = "/smartcomponents/*"
-  to = "https://huk24-de.web.dmz.tuhuk.de/smartcomponents/:splat"
+  to = "https://www.huk24.de/smartcomponents/:splat"
   status = 200
   force = true
 
 [[redirects]]
   from = "/txt/*"
-  to = "https://huk24-de.web.dmz.tuhuk.de/txt/:splat"
+  to = "https://www.huk24.de/txt/:splat"
   status = 200
   force = true
 
 [[redirects]]
   from = "/chat/api/*"
-  to = "https://huk24-de.web.dmz.tuhuk.de/chat/api/:splat"
+  to = "https://www.huk24.de/chat/api/:splat"
   status = 200
   force = true
 
